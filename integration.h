@@ -21,7 +21,8 @@ double trapezoidal(double left_bound, double right_bound, function f, int iterat
 	// sum over iterations
 	double sum = f(0) + f(iterations);
 	for (int i = 1; i < iterations; i++){
-		sum += 2 * f(x + i * h);
+		sum += 2 * f(x);
+    x += h
 	}
 
 	return h * sum / 2;
