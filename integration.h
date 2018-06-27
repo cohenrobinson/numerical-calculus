@@ -22,7 +22,7 @@ double trapezoidal(double left_bound, double right_bound, function f, int iterat
 	double sum = f(0) + f(iterations);
 	for (int i = 1; i < iterations; i++){
 		sum += 2 * f(x);
-    x += h
+    x += h;
 	}
 
 	return h * sum / 2;
@@ -45,7 +45,7 @@ double simpson(double left_bound, double right_bound, function f, int iterations
     else{
       m = 4;
     }
-    x += h
+    x += h;
   }
 
   return h * sum / 3;
@@ -56,12 +56,12 @@ double simpson(double left_bound, double right_bound, function f, int iterations
 double newtoncotes(double left_bound, double right_bound, function f, int iterations)
 {
 	if (iterations <= 2){ // This insures that there is a minimum of 3 partitions.
-		printf("ERROR: Please choose iterations greater than 2!");
+		printf("ERROR: Please choose iterations greater than 2!\n");
     exit(0);
 	}
 	else {
 		if (iterations % 3 != 0){
-			printf("ERROR: Please choose iterations divisible by 3!");
+			printf("ERROR: Please choose iterations divisible by 3!\n");
       exit(0);
 		}
 	}
@@ -69,11 +69,11 @@ double newtoncotes(double left_bound, double right_bound, function f, int iterat
 	unsigned int k = iterations / 3;
 
 	double x = left_bound;
-	double h = (right_bound - left_bound) / (double)n_partitions;
+	double h = (right_bound - left_bound) / iterations;
 	double current_sum = 0.0;
 	int i;
-	for (i = 0; i < iterations; i++){
-		current_sum += 3 * step_size * (f( x + (3 * i)*h ) + 3.0 * f( x + (3 * i + 1)*h ) + 3.0 * f( x + (3 * i + 2)* h) + f( x + (3 * i + 3)*step_size)) / 8.0;
+	for (i = 0; i < k; i++){
+		current_sum += 3 * h * (f( x + (3 * i)*h ) + 3.0 * f( x + (3 * i + 1)*h ) + 3.0 * f( x + (3 * i + 2)* h) + f( x + (3 * i + 3)*h)) / 8.0;
 	}
 
 	return current_sum; // All partitions have been summed.
