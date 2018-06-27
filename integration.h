@@ -7,3 +7,5 @@
 #include <math.h>
 
 typedef double (function)(double);
+
+// defintion for discrete integration
