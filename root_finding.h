@@ -41,3 +41,27 @@ double newton_raph( double (*function)(double), double x1, double x2, double xac
     }
   }
 }
+
+// function that runs the false position method
+double false_pos( double(*function)(double), double xl, double xr, double yacc){
+  int counter = 0;
+  while (function(x_new) < yacc){     // iterate until function converges within accuracy
+    double y1 = function(xl);
+    double y2 = function(xr);
+    if (y1*y2 > 0){
+      printf("Error in false_pos: You have not chosen two points where a line between them crosses the x-axis.");
+      return 0;
+    }
+    double x_new = xr - y2 * (xr - xl) / (y2 - y1);
+
+    if (y1 * x_new > 0){
+      xl = x_new;
+    }
+    else{
+      xr = x_new;
+    }
+    counter++
+  }
+  printf("The number of iterations in False Position method were: %d", counter);
+  return x_new;
+}
